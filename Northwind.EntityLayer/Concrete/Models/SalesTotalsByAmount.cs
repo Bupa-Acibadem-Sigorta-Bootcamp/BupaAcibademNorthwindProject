@@ -1,10 +1,11 @@
 ﻿using System;
+using Northwind.EntityLayer.Concrete.Bases;
 
 #nullable disable
 
 namespace Northwind.EntityLayer.Concrete.Models
 {
-    public partial class SalesTotalsByAmount
+    public partial class SalesTotalsByAmount : EntityBase
     {
         public decimal? SaleAmount { get; set; }
         public int OrderId { get; set; }

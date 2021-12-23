@@ -1,8 +1,10 @@
-﻿#nullable disable
+﻿using Northwind.EntityLayer.Concrete.Bases;
+
+#nullable disable
 
 namespace Northwind.EntityLayer.Concrete.Models
 {
-    public partial class AlphabeticalListOfProduct
+    public partial class AlphabeticalListOfProduct : EntityBase
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }

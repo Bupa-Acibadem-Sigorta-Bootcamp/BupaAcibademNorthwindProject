@@ -1,10 +1,11 @@
 ﻿using System;
+using Northwind.EntityLayer.Concrete.Bases;
 
 #nullable disable
 
 namespace Northwind.EntityLayer.Concrete.Models
 {
-    public partial class Invoice
+    public partial class Invoice : EntityBase
     {
         public string ShipName { get; set; }
         public string ShipAddress { get; set; }

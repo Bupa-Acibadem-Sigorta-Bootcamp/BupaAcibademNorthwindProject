@@ -1,10 +1,11 @@
 ﻿using System;
+using Northwind.EntityLayer.Concrete.Bases;
 
 #nullable disable
 
 namespace Northwind.EntityLayer.Concrete.Models
 {
-    public partial class OrdersQry
+    public partial class OrdersQry : EntityBase
     {
         public int OrderId { get; set; }
         public string CustomerId { get; set; }

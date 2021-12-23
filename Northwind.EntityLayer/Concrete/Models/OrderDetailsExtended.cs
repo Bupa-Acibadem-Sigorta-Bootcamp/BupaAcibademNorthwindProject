@@ -1,8 +1,10 @@
-﻿#nullable disable
+﻿using Northwind.EntityLayer.Concrete.Bases;
+
+#nullable disable
 
 namespace Northwind.EntityLayer.Concrete.Models
 {
-    public partial class OrderDetailsExtended
+    public partial class OrderDetailsExtended : EntityBase
     {
         public int OrderId { get; set; }
         public int ProductId { get; set; }

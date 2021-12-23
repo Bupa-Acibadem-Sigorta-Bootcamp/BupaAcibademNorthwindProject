@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Northwind.EntityLayer.Concrete.Bases;
 
 #nullable disable
 
 namespace Northwind.EntityLayer.Concrete.Models
 {
-    public partial class Category
+    public partial class Category : EntityBase
     {
         public Category()
         {
