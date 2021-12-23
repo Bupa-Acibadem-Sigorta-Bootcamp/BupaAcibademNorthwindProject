@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Northwind.InterfaceLayer.Abstract
+namespace Northwind.InterfaceLayer.Abstract.ModelService
 {
     public interface IOrderService
     {

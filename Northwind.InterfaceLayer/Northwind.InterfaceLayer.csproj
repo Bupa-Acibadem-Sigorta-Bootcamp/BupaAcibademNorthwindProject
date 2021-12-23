@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Concrete\" />
-    <Folder Include="GenericService\Concrete\" />
+    <Folder Include="Abstract\GenericService\Concrete\" />
   </ItemGroup>
 
   <ItemGroup>

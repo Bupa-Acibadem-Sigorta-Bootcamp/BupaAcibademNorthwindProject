@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Northwind.EntityLayer.Abstract.IBases;
 
-namespace Northwind.InterfaceLayer.GenericService.Abstract
+namespace Northwind.InterfaceLayer.Abstract.GenericService.Abstract
 {
     public interface IGenericService<T, TDto> where T : IEntityBase where TDto : IDtoBase
     {

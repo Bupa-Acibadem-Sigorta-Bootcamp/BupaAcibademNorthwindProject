@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.31829.152
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.WebApiLayer", "Northwind.WebApiLayer\Northwind.WebApiLayer.csproj", "{ABE0432C-EE9F-4E73-A38E-BA33129961B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.EntityLayer", "Northwind.EntityLayer\Northwind.EntityLayer.csproj", "{08DE6FE7-2483-4071-99EA-5548B6718123}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.EntityLayer", "Northwind.EntityLayer\Northwind.EntityLayer.csproj", "{08DE6FE7-2483-4071-99EA-5548B6718123}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.DataAccessLayer", "Northwind.DataAccessLayer\Northwind.DataAccessLayer.csproj", "{99AD1338-F90C-4356-8C28-49E4151C0AAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.DataAccessLayer", "Northwind.DataAccessLayer\Northwind.DataAccessLayer.csproj", "{99AD1338-F90C-4356-8C28-49E4151C0AAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.InterfaceLayer", "Northwind.InterfaceLayer\Northwind.InterfaceLayer.csproj", "{007F3CDA-2CAA-4F80-BDFE-93E1F35244EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.InterfaceLayer", "Northwind.InterfaceLayer\Northwind.InterfaceLayer.csproj", "{007F3CDA-2CAA-4F80-BDFE-93E1F35244EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.BusinessLogicLayer", "Northwind.BusinessLogicLayer\Northwind.BusinessLogicLayer.csproj", "{269FF348-AE04-440D-A894-AF49524035F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.BusinessLogicLayer", "Northwind.BusinessLogicLayer\Northwind.BusinessLogicLayer.csproj", "{269FF348-AE04-440D-A894-AF49524035F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
