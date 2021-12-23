@@ -33,11 +33,15 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.GenericRepository
         #region Methods
         public T Add(T entity)
         {
+            //TODO : Veri tabanına eklemek istediğim(gönderdiğim veriyi) veriyi al. Durumu, eklemek istediğim veriyi eklememe izin ver.
+            //TODO : Göndermiş olduğum veriyi kaydet.
+            //TODO : Veriyi geri döndür,var olarak göster.
             context.Entry(entity).State = EntityState.Added;
             set.Add(entity);
             return entity;
         }
 
+        //TODO : Find primary key alanına göre sorgu yapıp işlem döndürür.
         public bool Delete(int id)
         {
             return Delete(Find(id));
@@ -63,6 +67,7 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.GenericRepository
             return set.ToList();
         }
 
+        //TODO : Veri tabanı ile çalışacağımız için IQueryable metod kullanılmalıdır.
         public IQueryable<T> GetAll(Expression<Func<T, bool>> expression)
         {
             return set.Where(expression);
