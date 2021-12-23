@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Northwind.EntityLayer.Concrete.Bases;
+
+#nullable disable
 
 namespace Northwind.EntityLayer.Concrete.Dtos
 {
-    public class DtoCustomer : DtoBase
-    {
-        public DtoCustomer()
+    public partial class DtoSupplier : DtoBase
+    {   
+        public DtoSupplier()
         {
-            // TODO : Burada contructor yapısını kullanma amacı nedir?
+            
         }
 
-        public string CustomerId { get; set; }
+        public int SupplierId { get; set; }
         public string CompanyName { get; set; }
         public string ContactName { get; set; }
         public string ContactTitle { get; set; }
@@ -25,5 +23,6 @@ namespace Northwind.EntityLayer.Concrete.Dtos
         public string Country { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
+        public string HomePage { get; set; }
     }
 }

@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Northwind.EntityLayer.Concrete.Bases;
+
+#nullable disable
 
 namespace Northwind.EntityLayer.Concrete.Dtos
 {
-    public class DtoOrder : DtoBase
+    public partial class DtoOrdersQry : DtoBase
     {
-        public DtoOrder()
-        {
-            // TODO : Burada contructor yapısını kullanma amacı nedir?
-        }
-
         public int OrderId { get; set; }
         public string CustomerId { get; set; }
         public int? EmployeeId { get; set; }
@@ -28,5 +21,11 @@ namespace Northwind.EntityLayer.Concrete.Dtos
         public string ShipRegion { get; set; }
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
+        public string CompanyName { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string Region { get; set; }
+        public string PostalCode { get; set; }
+        public string Country { get; set; }
     }
 }
