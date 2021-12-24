@@ -25,7 +25,7 @@ namespace Northwind.EntityLayer.Concrete.Mappers
             CreateMap<Invoice, DtoInvoice>().ReverseMap();
             CreateMap<OperationClaim, DtoOperationClaim>().ReverseMap();
             CreateMap<OrderDetail, DtoOrderDetail>().ReverseMap();
-            CreateMap<DtoOrderDetailsExtended, DtoOrderDetailsExtended>().ReverseMap();
+            CreateMap<OrderDetailsExtended, DtoOrderDetailsExtended>().ReverseMap();
             CreateMap<OrdersQry, DtoOrdersQry>().ReverseMap();
             CreateMap<OrderSubtotal, DtoOrderSubtotal>().ReverseMap();
             CreateMap<Product, DtoProduct>().ReverseMap();
