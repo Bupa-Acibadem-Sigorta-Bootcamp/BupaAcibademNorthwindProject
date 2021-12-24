@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Northwind.EntityLayer.Concrete.Dtos;
+using Northwind.EntityLayer.Concrete.Models;
+using Northwind.InterfaceLayer.Abstract.GenericService.Abstract;
 
 namespace Northwind.InterfaceLayer.Abstract.ModelService
 {
-    public interface IProductSalesFor1997Service
+    public interface IProductSalesFor1997Service : IGenericService<ProductSalesFor1997, DtoProductSalesFor1997>
     {
     }
 }
