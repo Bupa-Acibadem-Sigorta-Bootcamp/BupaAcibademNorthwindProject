@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Northwind.BusinessLogicLayer.Abstract
 {
-    class IClass
+    internal interface IClass
     {
     }
 }

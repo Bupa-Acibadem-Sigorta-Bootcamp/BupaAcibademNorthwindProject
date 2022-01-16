@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Northwind.InterfaceLayer.Concrete
 {
-    class Class
+    internal class Class
     {
     }
 }
