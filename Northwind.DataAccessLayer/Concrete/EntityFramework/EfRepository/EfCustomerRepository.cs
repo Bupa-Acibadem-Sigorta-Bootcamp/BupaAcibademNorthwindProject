@@ -15,9 +15,11 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.EfRepository
         public EfCustomerRepository(DbContext context) : base(context)
         {
         }
-        public IQueryable CustomerReport()
+
+        public Customer GetByStringId(string id)
         {
-            return set.AsQueryable();
+            var customerStringId = set.SingleOrDefault(x => x.CustomerId == id);
+            return customerStringId;
         }
     }
 }

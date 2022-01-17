@@ -9,6 +9,8 @@ namespace Northwind.EntityLayer.Concrete.Bases
 {
     public class ResponseBase : IResponseBase
     {
+        public string SuccessMessage { get; set; }
+        public string ErrorMessage { get; set; }
         public string Message { get; set; }
         public int StatusCode { get; set; }
         public object Data { get; set; }
@@ -16,6 +18,8 @@ namespace Northwind.EntityLayer.Concrete.Bases
 
     public class ResponseBase<T> : IResponseBase<T>
     {
+        public string SuccessMessage { get; set; }
+        public string ErrorMessage { get; set; }
         public string Message { get; set; }
         public int StatusCode { get; set; }
         public T Data { get; set; }
