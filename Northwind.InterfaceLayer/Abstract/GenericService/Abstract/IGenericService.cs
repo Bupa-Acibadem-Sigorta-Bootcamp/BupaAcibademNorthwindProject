@@ -12,7 +12,7 @@ namespace Northwind.InterfaceLayer.Abstract.GenericService.Abstract
     {
         IResponseBase<TDto> Add(TDto entity, bool saveChanges = true);
         IResponseBase<Task<TDto>> AddAsync(TDto entity);
-        IResponseBase<bool> DeleteById(int id);
+        IResponseBase<bool> DeleteById(int id, bool saveChanges = true);
         IResponseBase<Task<bool>> DeleteByIdAsync(int id);
         IResponseBase<bool> Delete(TDto entity);
         IResponseBase<Task<bool>> DeleteAsync(TDto entity);
