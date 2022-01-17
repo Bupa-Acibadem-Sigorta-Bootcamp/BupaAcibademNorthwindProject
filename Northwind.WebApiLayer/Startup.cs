@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -40,8 +40,22 @@ namespace Northwind.WebApiLayer
             #endregion
 
             #region ApplicationContext
-            services.AddDbContext<NorthwindContext>();
+            //TODO : Veri tabanı baðlantısı default di çözümü(bağlantı adresi contexte tutuluyor.)
+
+            /* services.AddDbContext<NorthwindContext>();
+            services.AddScoped<DbContext, NorthwindContext>(); */
+
+            //TODO : Veri tabanı baðlantısı di çözümü(bağlantı adresi appsettings.json'da tutuluyor. Migration oluşturmak istediğimizde nerede olacağını söyledik.)
             services.AddScoped<DbContext, NorthwindContext>();
+            services.AddDbContext<NorthwindContext>(DbContextOptionsBuilder =>
+            {
+                DbContextOptionsBuilder.UseSqlServer(Configuration.GetConnectionString("SqlServer"),
+                    SqlServerDbContextOptionsBuilder =>
+                    {
+                        SqlServerDbContextOptionsBuilder.MigrationsAssembly("Northwind.DataAccessLayer");
+                    });
+            });
+
             #endregion
 
             #region ServiceSection

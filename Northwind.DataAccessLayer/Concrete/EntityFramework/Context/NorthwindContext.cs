@@ -18,9 +18,10 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.Context
 
         #endregion
 
-        public NorthwindContext(DbContextOptions<NorthwindContext> options)
+        public NorthwindContext(DbContextOptions<NorthwindContext> options, IConfiguration configuration)
             : base(options)
         {
+            this.configuration = configuration;
         }
 
         #region DbSet
