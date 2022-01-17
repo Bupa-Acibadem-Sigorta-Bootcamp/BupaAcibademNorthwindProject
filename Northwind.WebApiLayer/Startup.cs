@@ -11,6 +11,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Northwind.BusinessLogicLayer.Concrete.BusinessLogicManagers;
+using Northwind.DataAccessLayer.Abstract.IRepository;
+using Northwind.DataAccessLayer.Abstract.UnitOfWorkRepository;
+using Northwind.DataAccessLayer.Concrete.EntityFramework.Context;
+using Northwind.DataAccessLayer.Concrete.EntityFramework.EfRepository;
+using Northwind.DataAccessLayer.Concrete.EntityFramework.UnitOfWorkRepository;
+using Northwind.InterfaceLayer.Abstract.ModelService;
 
 namespace Northwind.WebApiLayer
 {
@@ -26,6 +34,31 @@ namespace Northwind.WebApiLayer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region DependencyInjection
+
+            #region JwtTokenService
+            #endregion
+
+            #region ApplicationContext
+            services.AddDbContext<NorthwindContext>();
+            services.AddScoped<DbContext, NorthwindContext>();
+            #endregion
+
+            #region ServiceSection
+            services.AddScoped<IOrderService, OrderManager>();
+            services.AddScoped<ICustomerService, CustomerManager>();
+            #endregion
+
+            #region RepositorySection
+            services.AddScoped<IOrderRepository, EfOrderRepository>();
+            services.AddScoped<ICustomerRepository, EfCustomerRepository>();
+            #endregion
+
+            #region UnitOfWork
+            services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
+            #endregion
+
+            #endregion
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

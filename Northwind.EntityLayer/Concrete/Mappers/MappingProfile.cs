@@ -13,6 +13,7 @@ namespace Northwind.EntityLayer.Concrete.Mappers
     {
         public MappingProfile()
         {
+            #region Mappers
             CreateMap<AlphabeticalListOfProduct, DtoAlphabeticalListOfProduct>().ReverseMap();
             CreateMap<Category, DtoCategory>().ReverseMap();
             CreateMap<CategorySalesFor1997, DtoCategorySalesFor1997>().ReverseMap();
@@ -24,6 +25,7 @@ namespace Northwind.EntityLayer.Concrete.Mappers
             CreateMap<EmployeeTerritory, DtoEmployeeTerritory>().ReverseMap();
             CreateMap<Invoice, DtoInvoice>().ReverseMap();
             CreateMap<OperationClaim, DtoOperationClaim>().ReverseMap();
+            CreateMap<Order, DtoOrder>().ReverseMap();
             CreateMap<OrderDetail, DtoOrderDetail>().ReverseMap();
             CreateMap<OrderDetailsExtended, DtoOrderDetailsExtended>().ReverseMap();
             CreateMap<OrdersQry, DtoOrdersQry>().ReverseMap();
@@ -43,6 +45,7 @@ namespace Northwind.EntityLayer.Concrete.Mappers
             CreateMap<Territory, DtoTerritory>().ReverseMap();
             CreateMap<User, DtoUser>().ReverseMap();
             CreateMap<UserOperationClaim, DtoUserOperationClaim>().ReverseMap();
+            #endregion
         }
     }
 }
