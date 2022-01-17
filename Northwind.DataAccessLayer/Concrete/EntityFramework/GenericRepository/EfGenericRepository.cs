@@ -25,7 +25,8 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.GenericRepository
         {
             this.context = context;
             this.set = this.context.Set<T>();
-            this.context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            //TODO : Lazy loading tru olduğu için iptal edildi.
+            //this.context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
         #endregion
 

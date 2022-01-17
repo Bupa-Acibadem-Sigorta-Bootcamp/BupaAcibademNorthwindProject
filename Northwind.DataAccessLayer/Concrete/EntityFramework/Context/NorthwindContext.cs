@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Northwind.EntityLayer.Concrete.Models;
 
 #nullable disable
@@ -7,15 +8,22 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.Context
 {
     public partial class NorthwindContext : DbContext
     {
-        public NorthwindContext()
+        #region Configure db bağlantısı için constructor
+
+        private readonly IConfiguration configuration;
+        public NorthwindContext(IConfiguration configuration)
         {
+            this.configuration = configuration;
         }
+
+        #endregion
 
         public NorthwindContext(DbContextOptions<NorthwindContext> options)
             : base(options)
         {
         }
 
+        #region DbSet
         public virtual DbSet<AlphabeticalListOfProduct> AlphabeticalListOfProducts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<CategorySalesFor1997> CategorySalesFor1997s { get; set; }
@@ -48,16 +56,30 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.Context
         public virtual DbSet<Territory> Territories { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserOperationClaim> UserOperationClaims { get; set; }
-
+        #endregion
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //TODO : LazyLoading kullanımı
+            optionsBuilder.UseLazyLoadingProxies(useLazyLoadingProxies: true);
+
+            #region Sınıf içi contex kullanımı çözümleri
+            /*
+            //TODO : Default contex kullanımı
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https: //go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=YAHYAERDOGAN\\SQLEXPRESS;Database=Northwind;Trusted_Connection=True;");
+                //TODO : Contex sınıfında configure edilmiş bağlantı adresi kullanımı ve migration adresi
+                optionsBuilder.UseSqlServer(configuration.GetConnectionString("SqlServer"), builder =>
+                {
+                    builder.MigrationsAssembly("Northwind.DataAccessLayer");
+                });
             }
+            */
+            #endregion
         }
 
+        #region OnModelCreating
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Turkish_CI_AS");
@@ -851,7 +873,7 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.Context
 
             OnModelCreatingPartial(modelBuilder);
         }
-
+        #endregion
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
