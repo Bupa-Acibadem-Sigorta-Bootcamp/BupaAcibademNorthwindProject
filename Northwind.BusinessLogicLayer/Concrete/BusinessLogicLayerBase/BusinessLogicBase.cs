@@ -6,7 +6,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Northwind.BusinessLogicLayer.Concrete.MapperConfiguration;
 using Northwind.DataAccessLayer.Abstract.GenericRepository;
 using Northwind.DataAccessLayer.Abstract.UnitOfWorkRepository;
 using Northwind.EntityLayer.Abstract.IBases;
@@ -31,14 +33,13 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
             unitOfWork = service.GetService<IUnitOfWorkRepository>();
             repository = unitOfWork.GetRepository<T>();
             this.service = service;
-            mapper = new Mapper((IConfigurationProvider)service);
         }
         public IResponseBase<TDto> Add(TDto entity, bool saveChanges = true)
         {
             try
             {
                 var resolvedResult = " ";
-                var TResult = repository.Add(mapper.Map<T>(entity));
+                var TResult = repository.Add(ObjectMapper.Mapper.Map<T>(entity));
                 resolvedResult = string.Join(',',
                     TResult.GetType().GetProperties()
                         .Select(x => $"-{x.Name}: {x.GetValue(TResult) ?? ""}-"));
@@ -49,9 +50,9 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
                 }
                 return new ResponseBase<TDto>
                 {
-                    Data = mapper.Map<T, TDto>(TResult),
+                    Data = ObjectMapper.Mapper.Map<T, TDto>(TResult),
                     Message = "Success",
-                    StatusCode = 1
+                    StatusCode = StatusCodes.Status200OK
                 };
             }
             catch (Exception e)
@@ -60,7 +61,7 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
                 {
                     Data = null,
                     Message = $"Error:{e.Message}",
-                    StatusCode = 1
+                    StatusCode = StatusCodes.Status500InternalServerError
                 };
             }
         }
@@ -106,9 +107,9 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
             {
                 return new ResponseBase<TDto>
                 {
-                    Data = mapper.Map<T,TDto>(repository.Find(id)),
+                    Data = ObjectMapper.Mapper.Map<T,TDto>(repository.Find(id)),
                     Message = "Success",
-                    StatusCode = 1
+                    StatusCode = StatusCodes.Status200OK
                 };
             }
             catch (Exception e)
@@ -117,7 +118,7 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicLayerBase
                 {
                     Data = null,
                     Message = $"Error:{e.Message}",
-                    StatusCode = 1
+                    StatusCode = StatusCodes.Status500InternalServerError
                 };
             }
         }
