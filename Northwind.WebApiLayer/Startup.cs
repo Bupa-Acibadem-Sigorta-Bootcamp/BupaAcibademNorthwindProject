@@ -10,8 +10,11 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Northwind.BusinessLogicLayer.Concrete.BusinessLogicManagers;
 using Northwind.DataAccessLayer.Abstract.IRepository;
 using Northwind.DataAccessLayer.Abstract.UnitOfWorkRepository;
@@ -37,6 +40,25 @@ namespace Northwind.WebApiLayer
             #region DependencyInjection
 
             #region JwtTokenService
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(cfiguration =>
+            {
+                cfiguration.SaveToken = true;
+                cfiguration.RequireHttpsMetadata = false;
+
+                cfiguration.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    RoleClaimType = "Roles",
+                    ClockSkew = TimeSpan.FromMinutes(5),
+                    ValidateLifetime = true,
+                    ValidIssuer = Configuration["Tokens:Issuer"],
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["Tokens:Issuer"],//Configuration["Tokens:Audience"] bende token service ile token clientler aynı olduğundan Issuer key'ini kullandım
+                    RequireSignedTokens = true,
+                    RequireExpirationTime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+                };
+            });
             #endregion
 
             #region ApplicationContext
@@ -61,17 +83,34 @@ namespace Northwind.WebApiLayer
             #region ServiceSection
             services.AddScoped<IOrderService, OrderManager>();
             services.AddScoped<ICustomerService, CustomerManager>();
+            services.AddScoped<IUserService, UserManager>();
             #endregion
 
             #region RepositorySection
             services.AddScoped<IOrderRepository, EfOrderRepository>();
             services.AddScoped<ICustomerRepository, EfCustomerRepository>();
+            services.AddScoped<IUserRepository, EfUserRepository>();
             #endregion
 
             #region UnitOfWork
             services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
             #endregion
 
+            #region Cores Settings
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .WithOrigins("www.api.com")
+                    .AllowAnyOrigin()
+                    .WithMethods("GET","POST")
+                    .AllowAnyMethod()
+                    .WithHeaders("accept","content-type")
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                );
+            });
+            #endregion
             #endregion
 
             services.AddControllers();

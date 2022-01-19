@@ -841,6 +841,7 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.Context
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.Property(e => e.UserId).HasColumnName("UserId");
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(50)
@@ -861,7 +862,7 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.Context
                     .HasMaxLength(500);
 
                 entity.Property(e => e.PasswordSalt)
-                    .IsRequired()
+                    //.IsRequired()
                     .HasMaxLength(500);
             });
 

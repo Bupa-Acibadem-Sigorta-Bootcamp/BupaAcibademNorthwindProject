@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Northwind.EntityLayer.Concrete.Dtos;
+using Northwind.EntityLayer.Concrete.Dtos.DtoTokenOperations;
 using Northwind.EntityLayer.Concrete.Models;
 
 namespace Northwind.EntityLayer.Concrete.Mappers
@@ -44,6 +45,8 @@ namespace Northwind.EntityLayer.Concrete.Mappers
             CreateMap<Supplier, DtoSupplier>().ReverseMap();
             CreateMap<Territory, DtoTerritory>().ReverseMap();
             CreateMap<User, DtoUser>().ReverseMap();
+            CreateMap<User, DtoLogin>().ReverseMap();
+            CreateMap<User, DtoLoginUser>().ReverseMap();
             CreateMap<UserOperationClaim, DtoUserOperationClaim>().ReverseMap();
             #endregion
         }

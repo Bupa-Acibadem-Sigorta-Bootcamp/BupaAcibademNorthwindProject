@@ -15,5 +15,14 @@ namespace Northwind.DataAccessLayer.Concrete.EntityFramework.EfRepository
         public EfUserRepository(DbContext context) : base(context)
         {
         }
+
+        public User Login(User userlogin)
+        {
+            //var user = set.Where(x => x.Email == userlogin.Email && x.PasswordHash == userlogin.PasswordHash).SingleOrDefault();
+            //var user = set.SingleOrDefault(x => x.Email == userlogin.Email && x.PasswordHash == userlogin.PasswordHash);
+
+            var user = set.FirstOrDefault(x => x.Email == userlogin.Email && x.PasswordHash == userlogin.PasswordHash);
+            return user;
+        }
     }
 }

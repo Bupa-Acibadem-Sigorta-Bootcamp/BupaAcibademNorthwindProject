@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Northwind.EntityLayer.Abstract.IBases;
 using Northwind.EntityLayer.Concrete.Bases;
 using Northwind.InterfaceLayer.Abstract.GenericService.Abstract;
@@ -12,6 +14,7 @@ namespace Northwind.WebApiLayer.Controllers.BaseController
 {
     [Route("api/[controller]s")]
     [ApiController]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class BaseController<TInterface, T, TDto> : ControllerBase
         where TInterface : IGenericService<T, TDto>
         where T : EntityBase
