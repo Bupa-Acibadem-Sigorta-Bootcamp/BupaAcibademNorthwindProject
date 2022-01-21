@@ -11,7 +11,7 @@ using Northwind.WebApiLayer.Controllers.BaseController;
 
 namespace Northwind.WebApiLayer.Controllers.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]s")]
     [ApiController]
     public class CustomerController : BaseController<ICustomerService, Customer, DtoCustomer >
     {

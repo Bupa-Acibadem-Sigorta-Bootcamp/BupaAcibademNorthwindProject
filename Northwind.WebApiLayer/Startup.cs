@@ -81,15 +81,38 @@ namespace Northwind.WebApiLayer
             #endregion
 
             #region ServiceSection
-            services.AddScoped<IOrderService, OrderManager>();
             services.AddScoped<ICustomerService, CustomerManager>();
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICustomerDemographicService, CustomerDemographicManager>();
+            services.AddScoped<IEmployeeService, EmployeeManager>();
+            services.AddScoped<IEmployeeTerritoryService, EmployeeTerritoryManager>();
+            services.AddScoped<IOperationClaimService, OperationClaimManager>();
+            services.AddScoped<IOrderService, OrderManager>();
+            services.AddScoped<IOrderDetailService, OrderDetailManager>();
+            services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IRegionService, RegionManager>();
+            services.AddScoped<IShipperService, ShipperManager>();
+            services.AddScoped<ISupplierService, SupplierManager>();
+            services.AddScoped<ITerritoryService, TerritoryManager>();
             services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
             #endregion
 
             #region RepositorySection
-            services.AddScoped<IOrderRepository, EfOrderRepository>();
             services.AddScoped<ICustomerRepository, EfCustomerRepository>();
+            services.AddScoped<ICategoryRepository, EfCategoryRepository>();
+            services.AddScoped<ICustomerDemographicRepository, EfCustomerDemographicRepository>();
+            services.AddScoped<IEmployeeRepository, EfEmployeeRepository>();
+            services.AddScoped<IEmployeeTerritoryRepository, EfEmployeeTerritoryRepository>();
+            services.AddScoped<IOperationClaimRepository, EfOperationClaimRepository>();
+            services.AddScoped<IOrderRepository, EfOrderRepository>();
+            services.AddScoped<IOrderDetailRepository, EfOrderDetailRepository>();
+            services.AddScoped<IProductRepository, EfProductRepository>();
+            services.AddScoped<IRegionRepository, EfRegionRepository>();
+            services.AddScoped<IShipperRepository, EfShipperRepository>();
+            services.AddScoped<ITerritoryRepository, EfTerritoryRepository>();
             services.AddScoped<IUserRepository, EfUserRepository>();
+            services.AddScoped<IUserOperationClaimRepository, EfUserOperationClaimRepository>();
             #endregion
 
             #region UnitOfWork

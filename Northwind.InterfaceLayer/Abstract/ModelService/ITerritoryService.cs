@@ -9,7 +9,7 @@ using Northwind.InterfaceLayer.Abstract.GenericService.Abstract;
 
 namespace Northwind.InterfaceLayer.Abstract.ModelService
 {
-    public interface ITerritoryService : IGenericService<Territory, DtoEmployeeTerritory>
+    public interface ITerritoryService : IGenericService<Territory, DtoTerritory>
     {
     }
 }

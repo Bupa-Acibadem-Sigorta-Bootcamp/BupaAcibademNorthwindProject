@@ -12,7 +12,7 @@ using Northwind.InterfaceLayer.Abstract.ModelService;
 
 namespace Northwind.WebApiLayer.Controllers.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]s")]
     [ApiController]
     public class UserController : ControllerBase
     {
