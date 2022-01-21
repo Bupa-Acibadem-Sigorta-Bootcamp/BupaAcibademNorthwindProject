@@ -11,7 +11,7 @@ namespace Northwind.EntityLayer.Concrete.Dtos
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public string PasswordHash { get; set; }
     }
 }

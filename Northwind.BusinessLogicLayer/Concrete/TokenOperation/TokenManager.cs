@@ -21,14 +21,14 @@ namespace Northwind.BusinessLogicLayer.Concrete.TokenOperation
             _configuration = configuration;
         }
 
-        public string CreateAccessToken(DtoLoginUser dtoUser)
+        public string CreateAccessToken(DtoLoginUser dtoLoginUser)
         {
             var claims = new[]
             {
                 //Todo : claims oluşturmak.
-                new Claim(JwtRegisteredClaimNames.Sub, dtoUser.Email),
+                new Claim(JwtRegisteredClaimNames.Sub, dtoLoginUser.Email),
                 //new Claim(JwtRegisteredClaimNames.Sub, dtoUser.UserCode),
-                new Claim(JwtRegisteredClaimNames.Jti, dtoUser.UserId.ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, dtoLoginUser.UserId.ToString())
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, "Token");
@@ -44,11 +44,9 @@ namespace Northwind.BusinessLogicLayer.Concrete.TokenOperation
             var key = new SymmetricSecurityKey(t);
 
             //Todo : Şifrelenmiş kimlik oluşturuluyor.
-
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             //Todo : Token ayarlarını oluşturuyoruz.
-
             var token = new JwtSecurityToken
             (
                 issuer: _configuration["Tokens:Issuer"], //token dağıtıcı url
