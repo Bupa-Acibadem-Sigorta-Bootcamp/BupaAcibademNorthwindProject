@@ -33,13 +33,9 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicManagers
         public IResponseBase<DtoUserToken> Login(DtoLogin dtoLogin)
         {
             //TODO : Kullanicinin girdigi parola sifrelenir ve veri tabaninda parolanin sifrelenmis haliyle karsilastirilir
-            var login = new DtoLogin
-            {
-                Email = dtoLogin.Email,
-                PasswordHash = Md5HashGenerator.MD5Hash(dtoLogin.PasswordHash)
-            };
-
-            var user = _userRepository.Login(ObjectMapper.Mapper.Map<User>(login));
+            dtoLogin.Email = dtoLogin.Email;
+            dtoLogin.PasswordHash = Md5HashGenerator.MD5Hash(dtoLogin.PasswordHash);
+            var user = _userRepository.Login(ObjectMapper.Mapper.Map<User>(dtoLogin));
 
             if (user != null)
             {
@@ -55,6 +51,7 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicManagers
                     Data = userToken,
                     Message = "Success",
                     SuccessMessage = "Token is success",
+                    ErrorMessage = "Not wrong",
                     StatusCode = StatusCodes.Status200OK
                 };
             }
@@ -64,6 +61,7 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicManagers
                 {
                     Data = null,
                     Message = "Error",
+                    SuccessMessage = "Not successful",
                     ErrorMessage = "Email or Password is wrong",
                     StatusCode = StatusCodes.Status406NotAcceptable
                 };
@@ -80,7 +78,6 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicManagers
                     PasswordHash = Md5HashGenerator.MD5Hash(register.PasswordHash),
                     FirstName = register.FirstName,
                     LastName = register.LastName
-
                 };
                 var resolvedResult = " ";
                 var TResult = _userRepository.Register(ObjectMapper.Mapper.Map<User>(encryptedPassword));
@@ -95,7 +92,7 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicManagers
                 return new ResponseBase<DtoUser>
                 {
                     SuccessMessage = "User has been registered successfully",
-                    ErrorMessage = "No error",
+                    ErrorMessage = "Not wrong",
                     Data = ObjectMapper.Mapper.Map<User, DtoUser>(TResult),
                     Message = "Success",
                     StatusCode = StatusCodes.Status200OK
@@ -106,6 +103,7 @@ namespace Northwind.BusinessLogicLayer.Concrete.BusinessLogicManagers
                 return new ResponseBase<DtoUser>
                 {
                     ErrorMessage = "User registration is incorrect",
+                    SuccessMessage = "Not successful",
                     Data = null,
                     Message = "Error",
                     StatusCode = StatusCodes.Status500InternalServerError
